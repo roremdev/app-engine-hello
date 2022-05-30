@@ -7,7 +7,7 @@ variable "project" {
     region = string
   })
   default = {
-    id     = "zentrity-01"
+    id     = "zentrity-351823"
     region = "us-central1"
   }
 }
@@ -20,6 +20,6 @@ variable "github" {
     repository = string
   })
   default = {
-    repository = "roremdev/zentrity"
+    repository = "roremdev/app-engine-hello"
   }
 }
