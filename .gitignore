@@ -1,0 +1,7 @@
+# NodeJS
+node_modules/
+
+## Terraform
+gcp/.terraform
+gcp/*.tfstate
+gcp/*.tfstate.*
