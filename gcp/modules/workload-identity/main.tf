@@ -1,9 +1,25 @@
+locals {
+  publisher_roles = toset([
+    "roles/appengine.deployer",
+    "roles/storage.objectViewer",
+    "roles/storage.objectCreator",
+    "roles/iam.serviceAccountUser"
+  ])
+}
+
 # Service account to be used for federated auth to publish to GCR
 resource "google_service_account" "github_service" {
   provider = google-beta
 
   account_id   = "github-service"
   display_name = "Service Account impersonated in GitHub Actions"
+}
+
+resource "google_project_iam_member" "github_actions_user_storage_role_binding" {
+  for_each = local.publisher_roles
+  project  = var.id
+  role     = each.value
+  member   = "serviceAccount:${google_service_account.github_service.email}"
 }
 
 # Identity pool for GitHub action based identity's access to Google Cloud resources

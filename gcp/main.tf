@@ -21,6 +21,7 @@ module "artifact_registry" {
 module "workload_identity" {
   source     = "./modules/workload-identity"
   repository = var.github.repository
+  id         = var.project.id
 }
 
 module "app_engine" {
