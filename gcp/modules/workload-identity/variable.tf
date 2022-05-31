@@ -1,7 +1,7 @@
 variable "repository" {
   description = "GitHub repository project"
-  type        = string
   nullable    = false
+  type        = string
 }
 
 variable "id" {
