@@ -1,4 +1,5 @@
 # NodeJS
+dist/
 node_modules/
 
 ## Terraform

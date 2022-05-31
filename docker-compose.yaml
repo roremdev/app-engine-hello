@@ -1,0 +1,10 @@
+services:
+  node:
+    build: .
+    container_name: production
+    ports:
+      - 8080:8080
+      - 443:443
+    expose:
+      - 8080
+      - 443

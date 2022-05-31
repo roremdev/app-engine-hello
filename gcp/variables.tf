@@ -7,7 +7,7 @@ variable "project" {
     region = string
   })
   default = {
-    id     = "zentrity-351901"
+    id     = "zentrity-351920"
     region = "us-central1"
   }
 }

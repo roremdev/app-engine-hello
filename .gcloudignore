@@ -1,9 +1,0 @@
-# Git
-.git
-.gitignore
-
-# JavaScript
-*.js
-
-# NodeJS
-node_modules/

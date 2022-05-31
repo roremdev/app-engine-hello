@@ -1,33 +1,28 @@
 {
-  "name": "appengine-typescript",
-  "description": "An example TypeScript app running on Google App Engine.",
+  "name": "zentrity-server",
   "version": "0.0.1",
+  "description": "Backend server for Zentrity",
   "private": true,
-  "license": "Apache Version 2.0",
-  "author": "Google Inc.",
+  "license": "MIT",
+  "author": "@roremDev",
   "engines": {
-    "node": "14.x.x"
+    "node": ">=16.x"
   },
+  "main": "src/index.ts",
   "scripts": {
-    "prepare": "npm run gcp-build",
-    "pretest": "npm run gcp-build",
-    "test": "mocha test/*.test.js --exit",
-    "posttest": "npm run lint",
-    "lint": "tslint -p .",
-    "start": "node ./dist/index.js",
-    "gcp-build": "tsc -p .",
-    "deploy": "gcloud app deploy"
+    "dev": "nodemon ./src/index",
+    "prebuild": "rm -rf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node src/index.js"
   },
   "dependencies": {
-    "@types/node": "^14.14.7",
-    "express": "^4.16.3",
-    "typescript": "^4.0.0"
+    "express": "4.18.1"
   },
   "devDependencies": {
-    "@types/express": "^4.16.0",
-    "chai": "^4.2.0",
-    "mocha": "^9.0.0",
-    "supertest": "^6.0.0",
-    "typescript": "^4.0.0"
+    "@types/express": "4.17.13",
+    "@types/node": "17.0.36",
+    "nodemon": "2.0.16",
+    "ts-node": "10.8.0",
+    "typescript": "4.7.2"
   }
 }
