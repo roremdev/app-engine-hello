@@ -37,5 +37,8 @@ jobs:
       - name: ⚠️ Use gcloud CLI
         run: 'gcloud info'
 
+      - name: 📃 Inspect the project
+        run: 'ls -al'
+
       - name: 🚀 Build with Cloud Build
         run: 'gcloud builds submit --config=cloudbuild.yaml'
