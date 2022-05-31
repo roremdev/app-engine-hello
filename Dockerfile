@@ -6,7 +6,7 @@ WORKDIR /server
 
 COPY pnpm-lock.yaml ./
 
-COPY dist ./
+COPY ./dist ./
 
 RUN pnpm install --frozen-lockfile --production
 
