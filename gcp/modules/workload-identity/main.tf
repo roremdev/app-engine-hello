@@ -3,7 +3,8 @@ locals {
     "roles/appengine.deployer",
     "roles/storage.objectViewer",
     "roles/storage.objectCreator",
-    "roles/iam.serviceAccountUser"
+    "roles/iam.serviceAccountUser",
+    "roles/cloudbuild.builds.editor"
   ])
 }
 
