@@ -4,7 +4,7 @@ RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 
 WORKDIR /server
 
-COPY pnpm-lock.yaml dist ./
+COPY pnpm-lock.yaml server ./
 
 RUN pnpm install --frozen-lockfile --production
 
