@@ -59,5 +59,4 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v0'
 
       - name: 🚀 Build and publish to Artifact Registry
-        run: 'gcloud builds submit --config=cloudbuild.yaml \
-              --substitutions=BRANCH_NAME="${{ github.ref_name }}"'
+        run: 'gcloud builds submit --config=cloudbuild.yaml --substitutions=BRANCH_NAME="${{ github.ref_name }}"'

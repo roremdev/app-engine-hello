@@ -1,19 +1,8 @@
 steps:
-  - name: 'alpine'
-    entrypoint: 'sh'
-    args:
-      - '-c'
-      - |
-        echo "***********************"
-        echo "$PROJECT_ID"
-        echo "$BRANCH_NAME"
-        echo "***********************"
-#  - name: 'gcr.io/cloud-builders/docker'
-#    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/production:1.3', '.' ]
-#images: ['us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/production']
-
-#steps:
-#  - name: 'gcr.io/cloud-builders/docker'
-#    args: ['build', '-t', 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/production:1.0', '.']
-#  - name: 'gcr.io/cloud-builders/docker'
-#    args: ['push', 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/production']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', '${_IMAGE}', '.' ]
+substitutions:
+  _IMAGE: 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/$BRANCH_NAME'
+options:
+  dynamic_substitutions: true
+images: [ '${_IMAGE}' ]
