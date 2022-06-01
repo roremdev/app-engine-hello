@@ -46,6 +46,8 @@ jobs:
 
       - name: 🏷 Download artifact
         uses: actions/download-artifact@v3
+        with:
+          name: build
 
       - name: 🔒 Google Authentication
         uses: google-github-actions/auth@v0
