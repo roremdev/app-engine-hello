@@ -7,4 +7,4 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/production', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/production']
+    args: ['push', 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/production:1.0']
