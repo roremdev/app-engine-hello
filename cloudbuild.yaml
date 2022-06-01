@@ -1,4 +1,5 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'build', '-t', 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/$BRANCH_NAME', '.' ]
-images: [ 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/$BRANCH_NAME' ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/$BRANCH_NAME' ]
