@@ -12,7 +12,7 @@ steps:
         echo "***********************"
         echo "$PROJECT_ID"
         echo "$BRANCH_NAME"
-      echo "***********************"
+        echo "***********************"
 #  - name: 'gcr.io/cloud-builders/docker'
 #    args: [ 'build', '-t', '${_IMAGE}', '.' ]
 #substitutions:
