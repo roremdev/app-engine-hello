@@ -31,6 +31,7 @@ jobs:
             .dockerignore
             .gcloudignore
             cloudbuild.yaml
+            Dockerfile
 
   deploy:
     name: Store in Artifact Registry
