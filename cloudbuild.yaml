@@ -26,4 +26,4 @@ steps:
     args: [ 'push', 'us-central1-docker.pkg.dev/$PROJECT_ID/backend-zentrity/$BRANCH_NAME' ]
 
 options:
-  logging: CLOUD_LOGGING_ONLY
+  logging: NONE
