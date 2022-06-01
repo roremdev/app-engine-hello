@@ -14,9 +14,9 @@ steps:
       - '-c'
       - |
         echo "***********************"
-        echo "$BRANCH_NAME"
-        echo "$LOCATION"
-        echo "$PROJECT_ID"
+        echo "$BRANCH_NAME" -> "development"
+        echo "$LOCATION" -> "global"
+        echo "$PROJECT_ID" -> "zentrity-352014"
         echo "***********************"
 
   - name: 'gcr.io/cloud-builders/docker'
