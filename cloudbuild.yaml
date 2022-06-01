@@ -1,15 +1,11 @@
 steps:
-  - name: node
-    entrypoint: npm
-    args: [ 'version', '> _VERSION' ]
   - name: 'alpine'
     entrypoint: 'sh'
     args:
       - '-c'
       - |
-        env=$(cat _VERSION)
         echo "***********************"
-        echo "${env}"
+        echo "$BRANCH_NAME"
         echo "***********************"
 #  - name: 'gcr.io/cloud-builders/docker'
 #    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/production:1.3', '.' ]
