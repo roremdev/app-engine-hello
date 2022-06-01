@@ -8,7 +8,6 @@ on:
 jobs:
   deploy:
     name: Build and Push Image
-    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: read
