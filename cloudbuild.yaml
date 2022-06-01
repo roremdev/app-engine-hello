@@ -5,7 +5,19 @@ steps:
 
   - name: node
     entrypoint: npm
-    args: [ 'build' ]
+    args: [ 'run', 'build' ]
+
+  - id: 'branch name'
+    name: 'alpine'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        echo "***********************"
+        echo "$BRANCH_NAME"
+        echo "$LOCATION"
+        echo "$PROJECT_ID"
+        echo "***********************"
 
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/backend-zentrity/$BRANCH_NAME', '.' ]

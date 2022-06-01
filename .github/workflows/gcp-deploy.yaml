@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: ⚙ Configure GitHub Actions
         uses: actions/checkout@v3
-        
+
       - name: 🔒 Google Authentication
         uses: google-github-actions/auth@v0
         with:
