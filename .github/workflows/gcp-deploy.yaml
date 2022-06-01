@@ -1,4 +1,4 @@
-name: Build and Store Artifact Registry
+name: Publish Artifact Registry [production]
 
 on:
   push:
@@ -6,12 +6,9 @@ on:
       - development
 
 jobs:
-  deploy:
-    name: Deploying to Google Cloud
+  build:
+    name: Build Server
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
 
     steps:
       - name: ⚙️ Configure GitHub Actions
@@ -22,8 +19,30 @@ jobs:
         with:
           version: 7.0.0-rc.7
 
-      - name: 🚧 Install dependencies and Build project
-        run: pnpm install && pnpm run build
+      - name: 🚧 Install dependencies
+        run: pnpm install
+
+      - name: 📦 Build project
+        run: pnpm run build
+
+      - name: 🏷 Upload artifact
+        uses: actions/upload-artifact@v0
+        with:
+          name: build
+          path: dist/
+
+  deploy:
+    name: Store in Artifact Registry
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: 🏷 Download artifact
+        uses: actions/download-artifact@v0
+        with:
+          name: build
 
       - name: 🔒 Google Authentication
         uses: "google-github-actions/auth@v0"
@@ -34,11 +53,5 @@ jobs:
       - name: 🚧 Set up Cloud SDK
         uses: 'google-github-actions/setup-gcloud@v0'
 
-      - name: ⚠️ Use gcloud CLI
-        run: 'gcloud info'
-
-      - name: 📃 Inspect the project
-        run: 'ls -al'
-
-      - name: 🚀 Build with Cloud Build
+      - name: 🚀 Build and publish to Artifact Registry
         run: 'gcloud builds submit --config=cloudbuild.yaml'
