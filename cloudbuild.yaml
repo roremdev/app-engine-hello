@@ -14,9 +14,5 @@ steps:
         echo "$BRANCH_NAME"
         echo "***********************"
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', '${_IMAGE}', '.' ]
-substitutions:
-  _IMAGE: 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/$BRANCH_NAME'
-options:
-  dynamic_substitutions: true
-images: [ '${_IMAGE}' ]
+    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/$BRANCH_NAME', '.' ]
+images: [ 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/$BRANCH_NAME' ]
