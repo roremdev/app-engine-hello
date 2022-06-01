@@ -32,6 +32,7 @@ jobs:
             .gcloudignore
             cloudbuild.yaml
             Dockerfile
+            pnpm-lock.yaml
 
   deploy:
     name: Store in Artifact Registry
