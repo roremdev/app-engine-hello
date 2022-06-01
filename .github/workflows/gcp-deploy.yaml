@@ -1,4 +1,4 @@
-name: Artifact Registry ${{ github.ref_name }}
+name: Store Image in Artifact Registry
 
 on:
   push:
@@ -6,36 +6,8 @@ on:
       - development
 
 jobs:
-  build:
-    name: Build Server
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: ⚙ Configure GitHub Actions
-        uses: actions/checkout@v3
-
-      - name: 🛠 Setup PNPM
-        uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 7.0.0-rc.7
-
-      - name: 📦 Build project
-        run: pnpm install && pnpm run build
-
-      - name: 🏷 Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: |
-            dist/
-            .dockerignore
-            .gcloudignore
-            cloudbuild.yaml
-            Dockerfile
-            pnpm-lock.yaml
-
   deploy:
-    name: Store in Artifact Registry
+    name: Build and Push Image
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -43,11 +15,6 @@ jobs:
       id-token: write
 
     steps:
-      - name: 🏷 Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-
       - name: 🔒 Google Authentication
         uses: google-github-actions/auth@v0
         with:

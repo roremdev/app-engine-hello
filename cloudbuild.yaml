@@ -1,5 +1,14 @@
 steps:
+  - name: node
+    entrypoint: npm
+    args: [ 'install' ]
+
+  - name: node
+    entrypoint: npm
+    args: [ 'build' ]
+
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/$BRANCH_NAME', '.' ]
+    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/backend-zentrity/$BRANCH_NAME', '.' ]
+
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'push', 'us-central1-docker.pkg.dev/zentrity-351920/backend-zentrity/$BRANCH_NAME' ]
+    args: [ 'push', 'us-central1-docker.pkg.dev/$PROJECT_ID/backend-zentrity/$BRANCH_NAME' ]
