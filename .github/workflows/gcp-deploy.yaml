@@ -47,6 +47,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
+          path: dist/
 
       - run: 'ls -al'
 
