@@ -30,6 +30,7 @@ jobs:
             dist/
             .dockerignore
             .gcloudignore
+            app.yaml
             cloudbuild.yaml
             Dockerfile
             pnpm-lock.yaml
