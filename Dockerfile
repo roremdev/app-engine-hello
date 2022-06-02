@@ -1,9 +1,11 @@
 FROM node:16
 
+RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+
 WORKDIR /server
 
-COPY package-lock.json dist ./
+COPY pnpm-lock.yaml dist ./
 
-RUN npm install --production
+RUN pnpm install --frozen-lockfile --production
 
-CMD [ "npm", "start" ]
+CMD [ "pnpm", "start" ]

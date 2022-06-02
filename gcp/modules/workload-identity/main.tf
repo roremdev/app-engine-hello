@@ -1,8 +1,6 @@
 locals {
   roles = toset([
-    "roles/editor",
-    "roles/iam.serviceAccountUser",
-    "roles/logging.logWriter"
+    "roles/editor"
   ])
 }
 
@@ -13,8 +11,7 @@ resource "google_service_account" "github_service" {
   display_name = "GitHub Actions Service"
 }
 
-# TODO: Change project for github_actions_roles
-resource "google_project_iam_binding" "project" {
+resource "google_project_iam_binding" "github_service_account_roles" {
   for_each = local.roles
   project  = var.id
   role     = each.value
@@ -52,23 +49,4 @@ resource "google_service_account_iam_member" "github_service_policy" {
   member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_pool.name}/attribute.repository/${var.repository}"
   role               = "roles/iam.workloadIdentityUser"
   service_account_id = google_service_account.github_service.id
-}
-
-resource "google_cloudbuild_trigger" "account-trigger" {
-  project = var.id
-
-  github {
-    owner = "roremdev"
-    name = "app-engine-hello"
-    push {
-      branch = "development"
-    }
-  }
-  
-  service_account = google_service_account.github_service.id
-  filename        = "cloudbuild.yaml"
-  depends_on      = [
-    google_project_iam_binding.project,
-  ]
-
 }
