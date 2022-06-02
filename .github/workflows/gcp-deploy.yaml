@@ -9,7 +9,10 @@ jobs:
   build:
     name: Build Server
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      id-token: write
+          
     steps:
       - name: ⚙ Configure GitHub Actions
         uses: actions/checkout@v3
@@ -25,8 +28,8 @@ jobs:
       - name: 🔒 Google Authentication
         uses: google-github-actions/auth@v0
         with:
-          workload_identity_provider: projects/54606748785/locations/global/workloadIdentityPools/github-identity-pool/providers/github-provider
-          service_account: github-service@zentrity-352102.iam.gserviceaccount.com
+          workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT }}
 
       - name: 🚀 Deploy to App Engine
-        uses : google-github-actions/deploy-appengine@v0
+        uses: google-github-actions/deploy-appengine@v0
