@@ -20,10 +20,10 @@ steps:
         echo "***********************"
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/backend/$BRANCH_NAME', '.' ]
+    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/server/$BRANCH_NAME', '.' ]
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'push', 'us-central1-docker.pkg.dev/$PROJECT_ID/backend/$BRANCH_NAME' ]
+    args: [ 'push', 'us-central1-docker.pkg.dev/$PROJECT_ID/server/$BRANCH_NAME' ]
 
 options:
   logging: CLOUD_LOGGING_ONLY
