@@ -64,12 +64,7 @@ resource "google_cloudbuild_trigger" "account-trigger" {
       branch = "development"
     }
   }
-
-#  trigger_template {
-#    branch_name = "development"
-#    repo_name   = var.repository
-#  }
-
+  
   service_account = google_service_account.github_service.id
   filename        = "cloudbuild.yaml"
   depends_on      = [
