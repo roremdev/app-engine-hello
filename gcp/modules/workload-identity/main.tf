@@ -1,6 +1,7 @@
 locals {
   roles = toset([
-    "roles/editor"
+    "roles/editor",
+    "roles/appengine.deployer"
   ])
 }
 
