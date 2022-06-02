@@ -59,6 +59,6 @@ jobs:
         uses: google-github-actions/setup-gcloud@v0
 
       - name: 🚀 Deploy to App Engine
-        uses : google-github-actions/app-engine-deploy@v0
+        uses : google-github-actions/deploy-appengine@v0
 #      - name: 🚀 Build and publish to Artifact Registry
 #        run: gcloud builds submit --config=cloudbuild.yaml --substitutions=BRANCH_NAME="${{ github.ref_name }}"
