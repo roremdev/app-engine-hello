@@ -25,11 +25,8 @@ jobs:
       - name: 🔒 Google Authentication
         uses: google-github-actions/auth@v0
         with:
-          workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.SERVICE_ACCOUNT }}
-
-      - name: 🚧 Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0
+          workload_identity_provider: projects/54606748785/locations/global/workloadIdentityPools/github-identity-pool/providers/github-provider
+          service_account: github-service@zentrity-352102.iam.gserviceaccount.com
 
       - name: 🚀 Deploy to App Engine
         uses : google-github-actions/deploy-appengine@v0
