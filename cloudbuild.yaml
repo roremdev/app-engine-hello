@@ -4,3 +4,7 @@ steps:
 
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'push', 'us-central1-docker.pkg.dev/$PROJECT_ID/backend-zentrity/$BRANCH_NAME' ]
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args: ['-c', 'gcloud app deploy --image-url=us-central1-docker.pkg.dev/$PROJECT_ID/backend-zentrity/$BRANCH_NAME']
