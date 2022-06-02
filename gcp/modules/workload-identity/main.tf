@@ -1,3 +1,11 @@
+locals {
+  roles = toset([
+    "roles/editor",
+    "roles/iam.serviceAccountUser",
+    "roles/logging.logWriter"
+  ])
+}
+
 # Service account to be used for federated auth to publish to GCR
 resource "google_service_account" "github_service" {
   provider     = google-beta
@@ -5,10 +13,12 @@ resource "google_service_account" "github_service" {
   display_name = "GitHub Actions Service"
 }
 
+# TODO: Change project for github_actions_roles
 resource "google_project_iam_binding" "project" {
-  project = var.id
-  role    = "roles/editor"
-  members = [
+  for_each = local.roles
+  project  = var.id
+  role     = each.value
+  members  = [
     "serviceAccount:${google_service_account.github_service.email}"
   ]
 }
@@ -42,4 +52,27 @@ resource "google_service_account_iam_member" "github_service_policy" {
   member             = "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_pool.name}/attribute.repository/${var.repository}"
   role               = "roles/iam.workloadIdentityUser"
   service_account_id = google_service_account.github_service.id
+}
+
+resource "google_cloudbuild_trigger" "account-trigger" {
+  project = var.id
+
+  github {
+    owner = "roremdev"
+    name = "app-engine-hello"
+    push {
+      branch = "development"
+    }
+  }
+
+#  trigger_template {
+#    branch_name = "development"
+#    repo_name   = var.repository
+#  }
+
+  service_account = google_service_account.github_service.id
+  filename        = "cloudbuild.yaml"
+  depends_on      = [
+    google_project_iam_binding.project,
+  ]
 }
