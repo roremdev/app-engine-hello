@@ -75,4 +75,5 @@ resource "google_cloudbuild_trigger" "account-trigger" {
   depends_on      = [
     google_project_iam_binding.project,
   ]
+
 }
