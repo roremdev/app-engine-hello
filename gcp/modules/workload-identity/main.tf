@@ -1,7 +1,7 @@
 # Roles to assign to GitHub service
 locals {
   roles = toset([
-    "roles/editor"
+    "roles/editor",
   ])
 }
 
