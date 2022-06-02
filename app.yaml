@@ -13,4 +13,5 @@
 
 # [START gae_flex_quickstart_yaml]
 runtime: custom
+env: flex
 # [END gae_flex_quickstart_yaml]
