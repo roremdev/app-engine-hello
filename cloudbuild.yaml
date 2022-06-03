@@ -15,7 +15,7 @@ steps:
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'bash'
-    args: [ '-c', 'gcloud app deploy app.yaml' ]
+    args: [ '-c', 'gcloud app deploy --image-url=us-central1-docker.pkg.dev/$PROJECT_ID/server/$BRANCH_NAME' ]
 
 options:
   logging: CLOUD_LOGGING_ONLY
