@@ -1,0 +1,21 @@
+steps:
+  - name: node
+    entrypoint: npm
+    args: [ 'install' ]
+
+  - name: node
+    entrypoint: npm
+    args: [ 'run', 'build' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/server/$BRANCH_NAME', '.' ]
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', 'us-central1-docker.pkg.dev/$PROJECT_ID/server/$BRANCH_NAME' ]
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args: [ '-c', 'gcloud app deploy app.staging.yaml --image-url=us-central1-docker.pkg.dev/$PROJECT_ID/server/$BRANCH_NAME' ]
+
+options:
+  logging: CLOUD_LOGGING_ONLY
