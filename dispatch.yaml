@@ -5,5 +5,5 @@ dispatch:
 #  - url: staging.api.zentrity.app/*
 #    service: staging
 #
-#  - url: development.api.zentrity.app/*
-#    service: development
+  - url: development.api.zentrity.app/*
+    service: development
