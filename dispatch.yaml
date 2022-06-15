@@ -2,8 +2,8 @@ dispatch:
   - url: api.zentrity.app/*
     service: default
 
-  - url: staging.api.zentrity.app/*
-    service: staging
-
-  - url: development.api.zentrity.app/*
-    service: development
+#  - url: staging.api.zentrity.app/*
+#    service: staging
+#
+#  - url: development.api.zentrity.app/*
+#    service: development
