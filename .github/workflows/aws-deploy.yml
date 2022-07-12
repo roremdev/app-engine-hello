@@ -57,7 +57,7 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name:⚡️ Dump GitHub Step
+      - name: ⚡️ Dump GitHub Step
         run: echo '${{ steps.login-ecr.outputs }}'
 
       - name: 🚀 Build and publish to Elastic Container Registry
