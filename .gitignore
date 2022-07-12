@@ -4,5 +4,11 @@ node_modules/
 
 ## Terraform
 gcp/.terraform
+gcp/.terraform.*
 gcp/*.tfstate
 gcp/*.tfstate.*
+
+aws/.terraform
+aws/.terraform.*
+aws/*.tfstate
+aws/*.tfstate.*
