@@ -32,6 +32,7 @@ jobs:
             Dockerfile
             package-lock.json
 
+
   deploy:
     name: Build and Push Image
     needs: build
@@ -58,7 +59,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: ⚡️ Dump GitHub Step
-        run: echo '${{ steps.login-ecr.outputs }}'
+        run: echo '${{ toJson(steps.login-ecr.outputs) }}'
 
       - name: 🚀 Build and publish to Elastic Container Registry
         env:

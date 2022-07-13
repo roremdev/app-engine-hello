@@ -3,8 +3,6 @@ services:
     build: .
     container_name: production
     ports:
-      - 8080:8080
-      - 443:443
+      - 80:80
     expose:
-      - 8080
-      - 443
+      - 80
